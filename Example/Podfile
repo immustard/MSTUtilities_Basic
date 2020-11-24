@@ -1,0 +1,6 @@
+use_frameworks!
+target 'MSTUtilities_Basic_Tests' do
+  pod 'MSTUtilities_Basic', :path => '../'
+  
+  
+end

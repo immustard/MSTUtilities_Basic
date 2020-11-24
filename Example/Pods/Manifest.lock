@@ -1,0 +1,16 @@
+PODS:
+  - MSTUtilities_Basic (0.1.0)
+
+DEPENDENCIES:
+  - MSTUtilities_Basic (from `../`)
+
+EXTERNAL SOURCES:
+  MSTUtilities_Basic:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  MSTUtilities_Basic: f1a0987b429634e06331dc777e81abcfbb749f21
+
+PODFILE CHECKSUM: f381abc3062b2a71ddd07eb7fa30f22d890204e5
+
+COCOAPODS: 1.10.0

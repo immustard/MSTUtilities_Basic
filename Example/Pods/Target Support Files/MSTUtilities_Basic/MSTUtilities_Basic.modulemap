@@ -1,0 +1,6 @@
+framework module MSTUtilities_Basic {
+  umbrella header "MSTUtilities_Basic-umbrella.h"
+
+  export *
+  module * { export * }
+}
