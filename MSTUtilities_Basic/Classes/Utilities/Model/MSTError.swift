@@ -25,14 +25,14 @@ enum MSTErrorCode: Int {
     
 }
 
-struct MSTError: Error {
+public struct MSTError: Error {
     var code: MSTErrorCode
     
     var customDescription: String = ""
 }
 
 extension MSTError: CustomStringConvertible {
-    var description: String {
+    public var description: String {
         if kStrIsEmpty(customDescription) {
             switch code {
             case .success:

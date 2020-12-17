@@ -28,8 +28,8 @@ public struct MSTLogType: OptionSet {
     }
 }
 
-public class MSTLog {
-    public static let shared = MSTLog()
+public class MSTLogUtil {
+    public static let shared = MSTLogUtil()
     
     public var logType: MSTLogType = .debug
 }
@@ -44,36 +44,37 @@ public func mstLog<T>(_ message:T,
     
     let file = (file as NSString).lastPathComponent;
     
-    if type.contains(.debug) && MSTLog.shared.logType.contains(.debug) {
+    if type.contains(.debug) && MSTLogUtil.shared.logType.contains(.debug) {
         p_log(tip: "🔵", text: "MSTLog DEBUG: \(file):(\(lineNum))--\(message)")
     }
-    if type.contains(.error) && MSTLog.shared.logType.contains(.error) {
+    if type.contains(.error) && MSTLogUtil.shared.logType.contains(.error) {
         p_log(tip: "🔴", text: "MSTLog ERROR: \(file):(\(lineNum))--\(message)")
     }
-    if type.contains(.warning) && MSTLog.shared.logType.contains(.warning) {
+    if type.contains(.warning) && MSTLogUtil.shared.logType.contains(.warning) {
         p_log(tip: "🟡", text: "MSTLog WARNING: \(file):(\(lineNum))--\(message)")
     }
-    if type.contains(.action) && MSTLog.shared.logType.contains(.action) {
+    if type.contains(.action) && MSTLogUtil.shared.logType.contains(.action) {
         p_log(tip: "🟣", text: "MSTLog ACTION: \(file):(\(lineNum))--\(message)")
     }
-    if type.contains(.success) && MSTLog.shared.logType.contains(.success) {
+    if type.contains(.success) && MSTLogUtil.shared.logType.contains(.success) {
         p_log(tip: "🟢", text: "MSTLog SUCCESS: \(file):(\(lineNum))--\(message)")
     }
-    if type.contains(.cancelled) && MSTLog.shared.logType.contains(.cancelled) {
+    if type.contains(.cancelled) && MSTLogUtil.shared.logType.contains(.cancelled) {
         p_log(tip: "🟠", text: "MSTLog CANCELLED: \(file):(\(lineNum))--\(message)")
     }
-    if type.contains(.other) && MSTLog.shared.logType.contains(.other) {
+    if type.contains(.other) && MSTLogUtil.shared.logType.contains(.other) {
         p_log(tip: "🟤", text: "MSTLog OTHER: \(file):(\(lineNum))--\(message)")
     }
-    if type.contains(.network) && MSTLog.shared.logType.contains(.network) {
+    if type.contains(.network) && MSTLogUtil.shared.logType.contains(.network) {
         p_log(tip: "⚪️", text: "MSTLog NETWORK: \(file):(\(lineNum))--\(message)")
     }
-    if type.contains(.socket) && MSTLog.shared.logType.contains(.socket) {
+    if type.contains(.socket) && MSTLogUtil.shared.logType.contains(.socket) {
         p_log(tip: "🟨", text: "MSTLog SOCKET: \(file):(\(lineNum))--\(message)")
     }
     
     #endif
 }
+
 
 private func p_log(tip: String, text: String) {
     let tipsArr = Array(repeating: tip, count: 6)

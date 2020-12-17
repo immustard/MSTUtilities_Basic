@@ -9,9 +9,9 @@
 import UIKit
 import Alamofire
 
-class MSTHTTPManager {
+public class MSTHTTPManager {
 
-    static func request(_ url: String, method: HTTPMethod = .post, params: [String: Any], headers: HTTPHeaders? = nil, completion closure: ((Any?, MSTError) -> Void)?) {
+    static public func request(_ url: String, method: HTTPMethod = .post, params: [String: Any], headers: HTTPHeaders? = nil, completion closure: ((Any?, MSTError) -> Void)?) {
         
         AF.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
             switch response.result {
