@@ -19,9 +19,10 @@ public struct MSTLogType: OptionSet {
     public static let other        = MSTLogType(rawValue: 1 << 6)
     public static let network      = MSTLogType(rawValue: 1 << 7)
     public static let socket       = MSTLogType(rawValue: 1 << 8)
+    public static let database     = MSTLogType(rawValue: 1 << 9)
 
     public static let base: MSTLogType = [.error, .warning, .cancelled]
-    public static let all: MSTLogType = [.debug, .error, .warning, .action, .success, .cancelled, .other, .network, .socket]
+    public static let all: MSTLogType = [.debug, .error, .warning, .action, .success, .cancelled, .other, .network, .socket, .database]
     
     public init(rawValue: Int) {
         self.rawValue = rawValue
@@ -70,6 +71,9 @@ public func mstLog<T>(_ message:T,
     }
     if type.contains(.socket) && MSTLogUtil.shared.logType.contains(.socket) {
         p_log(tip: "🟨", text: "MSTLog SOCKET: \(file):(\(lineNum))--\(message)")
+    }
+    if type.contains(.database) && MSTLogUtil.shared.logType.contains(.database) {
+        p_log(tip: "🟦", text: "MSTLog SOCKET: \(file):(\(lineNum))--\(message)")
     }
     
     #endif

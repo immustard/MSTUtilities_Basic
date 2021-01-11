@@ -361,3 +361,20 @@ private func p_checkIDCard(_ text: String) -> Bool {
     }
     return false
 }
+
+// MARK: - Localizable
+public enum MSTLanguageOptions: String {
+    case english = "Englist"
+    case chinese_simple = "中文(简体)"
+    
+    public static func getFileName(title: String) -> String {
+        switch title {
+        case "English":
+            return "en"
+        case "中文(简体)":
+            return "zh-Hans"
+        default:
+            return "en"
+        }
+    }
+}

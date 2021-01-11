@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Then
 
 public typealias MSTSearchTextChangeClosure = ((String) -> Void)
 public typealias MSTSearchTextReturnClosure = ((UITextField) -> Void)
@@ -25,7 +26,7 @@ public class MSTAppUITool: NSObject {
     var searchChangeBlocks: [UIView: MSTSearchTextChangeClosure] = [:]
     var searchReturnBlocks: [UIView: MSTSearchTextReturnClosure] = [:]
     
-    public func customNavigationBar(titleColor: UIColor, backgroudColor: UIColor, isShowDivingLine isShow: Bool) {
+    public static func customNavigationBar(titleColor: UIColor, backgroudColor: UIColor, isShowDivingLine isShow: Bool) {
         UINavigationBar.appearance().tintColor = titleColor
         UINavigationBar.appearance().barTintColor = backgroudColor
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: titleColor]
@@ -34,7 +35,19 @@ public class MSTAppUITool: NSObject {
         }
     }
     
-    public func customSearchBar(placeholder: String?, isShowSearchButton: Bool, titleColor: UIColor, textChangedClosure: MSTSearchTextChangeClosure?, textReturnClosure: MSTSearchTextReturnClosure?) -> UIView {
+    public static func navigationItem(width: CGFloat, image: String, target: Any, selector: Selector) -> UIBarButtonItem {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: width, height: width))
+        _ = UIButton(type: .system).then {
+            $0.frame = view.bounds
+            $0.setImage(UIImage(named: image), for: .normal)
+            $0.addTarget(target, action: selector, for: .touchUpInside)
+            view.addSubview($0)
+        }
+        
+        return UIBarButtonItem(customView: view)
+    }
+    
+    public static func customSearchBar(placeholder: String?, isShowSearchButton: Bool, titleColor: UIColor, textChangedClosure: MSTSearchTextChangeClosure?, textReturnClosure: MSTSearchTextReturnClosure?) -> UIView {
         let height: CGFloat = 44
         
         let view = UIView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: height))
@@ -48,7 +61,7 @@ public class MSTAppUITool: NSObject {
         textField.font = .systemFont(ofSize: 16)
         textField.mst_cornerRadius(radius: 8)
         textField.returnKeyType = .search
-        textField.delegate = self
+        textField.delegate = MSTAppUITool.shared
         textField.tag = 1
 
         view.addSubview(textField)
@@ -61,14 +74,14 @@ public class MSTAppUITool: NSObject {
         
         textField.leftView = leftView
         textField.leftViewMode = .always
-        textField.addTarget(self, action: #selector(p_textDidChange(_:)), for: .editingChanged)
+        textField.addTarget(MSTAppUITool.shared, action: #selector(MSTAppUITool.shared.p_textDidChange(_:)), for: .editingChanged)
         
         if textChangedClosure != nil {
-            searchChangeBlocks[textField] = textChangedClosure
+            MSTAppUITool.shared.searchChangeBlocks[textField] = textChangedClosure
         }
         
         if textReturnClosure != nil {
-            searchReturnBlocks[textField] = textReturnClosure
+            MSTAppUITool.shared.searchReturnBlocks[textField] = textReturnClosure
         }
         
         if isShowSearchButton {
@@ -77,7 +90,7 @@ public class MSTAppUITool: NSObject {
             btn.setTitleColor(titleColor, for: .normal)
             btn.titleLabel?.font = .systemFont(ofSize: 16)
             btn.tag = SearchViewButtonTag
-            btn.addTarget(self, action: #selector(p_searchAction(_:)), for: .touchUpInside)
+            btn.addTarget(MSTAppUITool.shared, action: #selector(MSTAppUITool.shared.p_searchAction(_:)), for: .touchUpInside)
             
             view.addSubview(btn)
             

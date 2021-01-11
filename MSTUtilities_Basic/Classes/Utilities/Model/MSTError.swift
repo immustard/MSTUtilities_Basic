@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum MSTErrorCode: Int {
+public enum MSTErrorCode: Int {
     case success            = 0     // 成功
     case timeout            = -1    // 超时
     case errBody            = -2    // 消息体错误
@@ -26,9 +26,18 @@ enum MSTErrorCode: Int {
 }
 
 public struct MSTError: Error {
-    var code: MSTErrorCode
+    public var code: MSTErrorCode
     
-    var customDescription: String = ""
+    public var customDescription: String = ""
+    
+    public init(code: MSTErrorCode) {
+        self.code = code
+    }
+    
+    public init(code: MSTErrorCode, desc: String) {
+        self.code = code
+        self.customDescription = description
+    }
 }
 
 extension MSTError: CustomStringConvertible {

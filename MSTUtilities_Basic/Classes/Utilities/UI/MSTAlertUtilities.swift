@@ -114,6 +114,34 @@ public class MSTAlertUtilities {
         _ = alert.showEdit(title, subTitle: subtitle ?? "")
     }
     
+    public static func showEditingFields(withTitle title: String, subtitle: String?, confirmButtonTitle: String = "确认", placeholders: [String], completion: (([String]) -> Void)?) {
+        
+        let appearance = SCLAlertView.SCLAppearance(
+            kTextFieldHeight: 60,
+            showCloseButton: true,
+            circleBackgroundColor: .mst_color(light: .white, dark: UIColorFromRGB(0x222222)),
+            contentViewColor: .mst_color(light: .white, dark: UIColorFromRGB(0x222222)),
+            titleColor: .mst_color(light: UIColorFromRGB(0x4D4D4D), dark: UIColorFromRGB(0xf0f0f0))
+        )
+
+        let alert = SCLAlertView(appearance: appearance)
+        var txtArr: [UITextField] = []
+        
+        for ph in placeholders {
+            let txt = alert.addTextField(ph)
+            txtArr.append(txt)
+        }
+
+        _ = alert.addButton("取消") {
+
+        }
+        let responder = SCLAlertViewResponder(alertview: alert)
+        responder.setDismissBlock {
+            completion?(txtArr.compactMap { $0.text ?? "" })
+        }
+        _ = alert.showEdit(title, subTitle: subtitle ?? "")
+    }
+    
     public static func showEditingView(withTitle title: String, subtitle: String?, confirmButtonTitle: String = "确认", textFieldHeight: CGFloat = 96, completion: ((String?) -> Void)?) {
         let appearance = SCLAlertView.SCLAppearance(
           kTextViewdHeight: textFieldHeight,

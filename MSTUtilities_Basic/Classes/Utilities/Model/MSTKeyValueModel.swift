@@ -8,7 +8,7 @@
 import UIKit
 import KakaJSON
 
-public class MSTKeyValueModel: Convertible {
+public class MSTKeyValueModel: NSObject, Convertible {
 
     public var key: String = ""
     
@@ -24,7 +24,7 @@ public class MSTKeyValueModel: Convertible {
     
     public var subItems: [MSTKeyValueModel] = []
     
-    public required init() {}
+    required public override init() {}
     
     public convenience init(key: String, value: String) {
         self.init()

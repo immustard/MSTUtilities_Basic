@@ -90,24 +90,32 @@ public func kHexColor(_ string: String) -> UIColor {
     return UIColor.mst_colorWithHexString(string)
 }
 
-var kDynamicColor333: UIColor {
+public var kDynamicColor333: UIColor {
     return .mst_color(light: kHexColor("#333333"), dark: kHexColor("#CCCCCC"))
 }
 
-var kDynamicWhite: UIColor {
+public var kDynamicColor666: UIColor {
+    return .mst_color(light: kHexColor("#666666"), dark: kHexColor("#999999"))
+}
+
+public var kDynamicColor999: UIColor {
+    return .mst_color(light: kHexColor("#999999"), dark: kHexColor("#666666"))
+}
+
+public var kDynamicWhite: UIColor {
     return .mst_color(light: kHexColor("#FFFFFF"), dark: kHexColor("#000000"))
 }
 
-var kDynamicBgColor: UIColor {
-    return .mst_color(light: kHexColor("#F3F4F5"), dark: kHexColor("#191A1B"))
+public var kDynamicBgColor: UIColor {
+    return .mst_color(light: kHexColor("#F3F4F5"), dark: kHexColor("#121212"))
 }
 
-var kDynamicPlaceholderColor: UIColor {
+public var kDynamicPlaceholderColor: UIColor {
     return .mst_color(light: kHexColor("#C4C4C7"), dark: kHexColor("#46464A"))
 }
 
 // MARK: - UI
-let kWindow = UIApplication.shared.keyWindow!
+public let kWindow = UIApplication.shared.keyWindow!
 
 // MARK: - String
 public func kStringFromObj(_ obj: Any?) -> String {
