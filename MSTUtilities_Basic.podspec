@@ -49,7 +49,7 @@ TODO: Add long description of the pod here.
   # 下拉刷新
   s.dependency 'MJRefresh'
   # 模型转换
-  s.dependency 'KakaJSON', '~> 1.1.1'
+  s.dependency 'HandyJSON', '~> 5.0.2'
   # toastView
   s.dependency 'PKHUD'
   # alertView

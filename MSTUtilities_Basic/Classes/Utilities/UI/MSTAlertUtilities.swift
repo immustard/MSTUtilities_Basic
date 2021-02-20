@@ -105,7 +105,7 @@ public class MSTAlertUtilities {
         let alert = SCLAlertView(appearance: appearance)
         let txt = alert.addTextField(placeholder)
         _ = alert.addButton("取消") {
-
+            txt.text = nil
         }
         let responder = SCLAlertViewResponder(alertview: alert)
         responder.setDismissBlock {
@@ -133,7 +133,7 @@ public class MSTAlertUtilities {
         }
 
         _ = alert.addButton("取消") {
-
+            txtArr.forEach { $0.text = nil }
         }
         let responder = SCLAlertViewResponder(alertview: alert)
         responder.setDismissBlock {

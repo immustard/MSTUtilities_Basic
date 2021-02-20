@@ -6,9 +6,9 @@
 //
 
 import UIKit
-import KakaJSON
+import HandyJSON
 
-public class MSTKeyValueModel: NSObject, Convertible {
+public class MSTKeyValueModel: HandyJSON {
 
     public var key: String = ""
     
@@ -24,7 +24,7 @@ public class MSTKeyValueModel: NSObject, Convertible {
     
     public var subItems: [MSTKeyValueModel] = []
     
-    required public override init() {}
+    required public init() {}
     
     public convenience init(key: String, value: String) {
         self.init()
